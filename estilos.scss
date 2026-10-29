@@ -1,0 +1,89 @@
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+
+//Ejercicio1
+.article-link {
+    position: relative;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: green;
+        transition: width 0.25s ease-out 0.1s;
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
+}
+
+//EJercicio2
+
+@keyframes fadeUpEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.posts-grid {
+    display: flex;
+    gap: 1rem;
+}
+
+.post-item {
+    background-color: rgb(38, 148, 182);
+    border: 1px solid gray;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+
+    
+    animation: fadeUpEntrance 0.5s ease-out forwards;
+    opacity: 0;
+
+    
+    @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+        animation-delay: $i * 0.2s; 
+        }
+    }
+}
+
+//Ejercicio3
+.subnav-toolbar {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-bottom: 1px solid gray;
+    padding: 10px 16px;
+    position: fixed;
+
+}
+
+@supports (position: sticky) or (position: -webkit-sticky) {
+    .subnav-toolbar {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+    }
+}
